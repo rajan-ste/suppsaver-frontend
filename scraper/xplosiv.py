@@ -7,6 +7,7 @@ def scrape_products(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0'
     }
+    
     response = requests.get(url, headers=headers)
 
     # Only proceed if we got a successful response
@@ -29,16 +30,26 @@ def scrape_products(url):
 
             # Find the lowest price
             price_tag = product.find('span', class_='price')
-            price = price_tag.text if price_tag else 'No Price Found'
+            price = price_tag.text[1:] if price_tag else 0
 
             product_data.append({
-                'product_name': product_name,
+                'companyid': 1,
+                'productname': product_name,
                 'price': price,
-                'image_url': image_url,
+                'image': image_url,
                 'link': product_link
             })
 
+        url = "http://localhost:8080/api/products"  
+
+        response = requests.post(url, headers=headers, json=product_data)
+
+        print(f"Status Code: {response.status_code}")
+        print(f"Response Body: {response.text}")
+
         return product_data
+    
+
     else:
         print("Failed to retrieve the webpage")
         return []
