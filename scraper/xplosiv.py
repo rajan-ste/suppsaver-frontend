@@ -40,7 +40,7 @@ def scrape_products(url):
                 'link': product_link
             })
 
-        url = "http://localhost:8080/api/products"  
+        url = "http://localhost:8080/api/products"
 
         response = requests.post(url, headers=headers, json=product_data)
 
