@@ -5,5 +5,7 @@
   text-align: center;
 }
 
-
+#root:hover {
+  color: lightskyblue;
+}
 
