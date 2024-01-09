@@ -1,0 +1,53 @@
+@import url('https://fonts.cdnfonts.com/css/intro');
+
+.header {
+    color: white;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #3A4CFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 17px;
+}
+
+.logo {
+    position:absolute; 
+    top:12px; left:0; right:0; bottom:0; 
+    margin:auto;
+    font-size: 40px;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    gap: 20px;
+}
+
+.nav-left li {
+    list-style: none;
+}
+
+.nav-left a,
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.nav-right {
+    position: absolute;
+    right: 50px;
+    top: 16px;
+}
+
+.user {
+    width: 50px;
+}
