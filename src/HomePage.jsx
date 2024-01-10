@@ -8,7 +8,7 @@ function HomePage () {
                 <div className='top-box'>
                     <h1>SuppSaver</h1>
                     <p>Find the best deal on your fitness supplements by comparing prices across three of New Zealand&apos;s largest supplement retailers.</p>
-                    <p>Explore -&gt;</p>
+                    <a className='explore' href='#'>Explore &#8594;</a>
                 </div>
                 <div className='middle-box'>
                     <img src={trainer}></img>
