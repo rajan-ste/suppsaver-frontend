@@ -46,9 +46,9 @@ def scrape_products(url):
                 'link': product_link
             })
 
-        url = "http://localhost:8080/api/products/update-price" 
+        url = "http://localhost:8080/api/products" 
 
-        response = requests.put(url, headers=headers, json=product_data)
+        response = requests.post(url, headers=headers, json=product_data)
 
         print(f"Status Code: {response.status_code}")
         print(f"Response Body: {response.text}")
