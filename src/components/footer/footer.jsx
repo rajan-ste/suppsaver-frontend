@@ -6,7 +6,7 @@ import sqlLogo from './../../assets/mysql.svg';
 function Footer () {
     return (
         <>
-        <footer>
+        <footer className='footer'>
             <div>
                 <p>Powered by</p>
                 <img src={reactLogo} alt="React Logo" className='react-logo'></img>

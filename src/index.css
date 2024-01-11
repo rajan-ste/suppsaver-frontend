@@ -16,7 +16,7 @@
 body {
   margin: 0;
   display: flex;
-  
+  position: relative;
   min-width: 120vh;
   min-height: 100vh;
   background: rgb(195,195,195);
