@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import './Products.css';
 
 
@@ -22,14 +23,16 @@ function Products () {
         <div><h1>search bar here</h1></div>
         <div className='wrapper'>
             {product.map((item, i) => {
-                return <div key={i} className='product'>
+                return <Link to={"products/" + item.id} className={item.price === 0 ? 'product-zero' : 'product'} key={i}>
                             <figure>
                                 <img className='product-image' src={item.image} alt={item.name}></img>
                                 <figcaption>{item.name}</figcaption>
+                                <figcaption className='prod-price'>{item.price === 0 ? "Product Unavailable" : `$${item.price.toFixed(2)}`}</figcaption>
                             </figure>    
-                        </div>
+                        </Link>
                         })}
                     </div>
+                   
         </>
     );
 }
