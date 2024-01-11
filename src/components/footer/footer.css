@@ -1,0 +1,18 @@
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    color: black;
+    text-align: left;
+    padding: 10px 20px;
+}
+
+.node-logo,
+.sql-logo {
+    width: 20%;
+}
+
+.react-logo {
+    width: 28px;
+}
