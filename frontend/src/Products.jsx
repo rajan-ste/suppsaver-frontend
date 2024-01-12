@@ -31,10 +31,9 @@ function Products () {
                             </figure>    
                         </Link>
                         })}
-                    </div>
-                   
+                    </div>        
         </>
-    );
+    );  
 }
 
 export default Products;
