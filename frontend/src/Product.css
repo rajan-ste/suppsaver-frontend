@@ -1,0 +1,7 @@
+.prod-comp-wrapper {
+    display: grid;
+    grid-template-columns: 10px;
+    grid-gap: 50px;
+    justify-content: center;
+  }
+
