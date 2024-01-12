@@ -23,7 +23,7 @@ function Products () {
         <div><h1>search bar here</h1></div>
         <div className='wrapper'>
             {product.map((item, i) => {
-                return <Link to={"products/" + item.id} className={item.price === 0 ? 'product-zero' : 'product'} key={i}>
+                return <Link to={"/products/" + item.id} className={item.price === 0 ? 'product-zero' : 'product'} key={i}>
                             <figure>
                                 <img className='product-image' src={item.image} alt={item.name}></img>
                                 <figcaption>{item.name}</figcaption>
