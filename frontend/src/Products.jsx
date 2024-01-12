@@ -27,7 +27,7 @@ function Products () {
                             <figure>
                                 <img className='product-image' src={item.image} alt={item.name}></img>
                                 <figcaption>{item.name}</figcaption>
-                                <figcaption className='prod-price'>{item.price === 0 ? "Product Unavailable" : `$${item.price.toFixed(2)}`}</figcaption>
+                                <figcaption className='prod-price'>{item.price === 0 ? "Product Unavailable" : `Best Price: $${item.price.toFixed(2)}`}</figcaption>
                             </figure>    
                         </Link>
                         })}

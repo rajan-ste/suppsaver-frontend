@@ -5,7 +5,9 @@
     justify-content: center;
   }
 
-.wrapper {
+.wrapper,
+.wrapper-one,
+.wrapper-two {
     margin-top: 15%;
 }
 
@@ -13,4 +15,21 @@
     width: 40%;
     margin-top: -3%;
     margin-bottom: -5%;
+}
+
+.wrapper-one,
+.wrapper-two {
+    display: grid;
+    grid-gap: 50px;
+    justify-content: center;
+  }
+
+.wrapper-one {
+    grid-template-columns: 450px;
+    padding-top: 25%;
+}
+
+.wrapper-two {
+    grid-template-columns: 450px 450px;
+    padding-top: 5%;
 }
