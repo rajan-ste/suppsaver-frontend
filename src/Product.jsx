@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import './Product.css';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
@@ -19,15 +20,22 @@ function ProductList() {
     }, [id]); 
 
     return (
-        <div>
-            {products.map(product => (
-                <div key={[product.productid, product.companyid]}>
-                    <h2>{product.product_name}</h2>
-                    {/* More product details here */}
-                </div>
-            ))}
-        </div>
-    );
+        <>
+        <div className="page-title"><h1>Products</h1></div>
+        <div><h1>search bar here</h1></div>
+        <div className='wrapper'>
+            {products.map((product, i) => {
+                return <div to={"/products/" + product.id} className={product.price === 0 ? 'product-zero' : 'product'} key={i}>
+                            <figure>
+                                <img className='product-image' src={product.image} alt={product.product_name}></img>
+                                <figcaption>{product.product_name}</figcaption>
+                                <figcaption className='prod-price'>{product.price === 0 ? "Product Unavailable" : `$${product.price.toFixed(2)}`}</figcaption>
+                            </figure>    
+                        </div>
+                        })}
+                    </div>        
+        </>
+    ); 
 }
 
 export default ProductList;
