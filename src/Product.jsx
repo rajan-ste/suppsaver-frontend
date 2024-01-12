@@ -5,6 +5,7 @@ import './Product.css';
 
 function Product() {
     const [products, setProducts] = useState([]);
+    const [number, setNumber] = useState(0)
     let { id } = useParams();
 
     useEffect(() => {
@@ -15,14 +16,17 @@ function Product() {
                 // Filter products by productId
                 const filteredProducts = data.filter(product => product.productid == id);
                 setProducts(filteredProducts);
+                setNumber(filteredProducts.length)
                 console.log(data);
+
             })
             .catch(error => console.error('Error fetching data:', error));
     }, [id]); 
 
     return (
         <>
-        <div className='wrapper'>
+        <div className={number === 1 ? 'wrapper-one' :
+                        number === 2 ? 'wrapper-two' : 'wrapper' }>
             {products.map((product, i) => {
                 return <Link to={product.link} target="_blank" className={product.price === 0 ? 'product-zero' : 'product'} key={i}>
                             <figure>
