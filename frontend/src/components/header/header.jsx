@@ -1,4 +1,4 @@
-import './header.css'
+import './Header.css'
 import userLogo from './../../assets/user.svg'
 import { Link } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import './footer.css';
+import './Footer.css';
 import reactLogo from './../../assets/react.svg';
 import nodeLogo from './../../assets/node.svg';
 import sqlLogo from './../../assets/mysql.svg';
