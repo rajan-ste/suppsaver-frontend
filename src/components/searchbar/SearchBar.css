@@ -2,11 +2,12 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    margin-top: 10%;
   }
   
   .search-input {
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -1,0 +1,105 @@
+.toggle {
+    margin: 50px;
+  }
+  
+.login-box {
+    margin-top: 100%;
+    border: solid blue 1px;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 15px; /* Space between input groups */
+    align-items: center; /* Aligns items vertically */
+    padding: 10px;
+}
+
+.input-group label {
+    flex-basis: 100px; /* Fixed width for labels */
+    margin-right: 10px; /* Space between label and input box */
+}
+
+.input-group input {
+    flex-grow: 1; /* Input takes up remaining space */
+    padding: 5px; /* Padding inside input box */
+    border: 1px solid #ccc; /* Border for input box */
+}
+
+.submit-button {
+    margin: 10px;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 13px;
+    height: 30px;
+    background-color: #9147ff;
+    color: white;
+    padding: 0 20px;
+    :hover {
+        background-color: #772ce8;
+    }
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center; /* Aligns text and toggle vertically */
+    justify-content: center;
+    margin: 30px;
+    
+}
+
+.toggle-text {
+    margin: 0 10px; /* Spacing around the text */
+    font-size: 16px; /* Text size */
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+    display: inline-block;
+}
+
+.toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #2196F3;
+}
+
+.toggle-checkbox:checked + .toggle-label:before {
+    transform: translateX(26px);
+}
+
