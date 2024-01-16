@@ -12,13 +12,14 @@ function Login () {
     return (
         <>
         <div className="login-box">
+            <h1 className="login-title">Join SuppSaver</h1>
             <div className="toggle-container">
-                <span className="toggle-text">Login</span>
+                <span className={toggle ? "toggle-text" : "untoggle-text"}>Login</span>
                 <div className="toggle-switch">
                     <input onClick={toggleForm} type="checkbox" id="toggle" className="toggle-checkbox" />
                     <label htmlFor="toggle" className="toggle-label"></label>
                 </div>
-                <span className="toggle-text">Register</span>
+                <span className={!toggle ? "toggle-text" : "untoggle-text"}>Register</span>
             </div>
 
                 <form action="/login" method="POST" className="login-form"></form>

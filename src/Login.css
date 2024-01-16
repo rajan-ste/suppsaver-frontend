@@ -1,18 +1,19 @@
-.toggle {
-    margin: 50px;
-  }
-  
+.login-title {
+    padding-top: 10px;
+}
+
 .login-box {
     margin-top: 100%;
-    border: solid blue 1px;
+    background-color: white;
     justify-content: center;
     border-radius: 15px;
+    padding: 20px;
 }
 
 .input-group {
     display: flex;
-    margin-bottom: 15px; /* Space between input groups */
-    align-items: center; /* Aligns items vertically */
+    margin-bottom: 30px; 
+    align-items: center;
     padding: 10px;
 }
 
@@ -33,7 +34,7 @@
     outline: 0;
     border: none;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 4px;
     font-size: 13px;
     height: 30px;
@@ -50,12 +51,17 @@
     align-items: center; /* Aligns text and toggle vertically */
     justify-content: center;
     margin: 30px;
-    
+    padding-top: 20px;
 }
 
-.toggle-text {
+.toggle-text,
+.untoggle-text {
     margin: 0 10px; /* Spacing around the text */
     font-size: 16px; /* Text size */
+}
+
+.untoggle-text {
+    opacity: 50%;
 }
 
 .toggle-switch {
