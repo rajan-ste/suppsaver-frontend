@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 import './Product.css';
 
 function Product() {
     const [products, setProducts] = useState([]);
     const [number, setNumber] = useState(0)
-    let { id } = useParams();
+    let { productid } = useParams();
 
     useEffect(() => {
         // Fetch data from API
@@ -14,14 +15,14 @@ function Product() {
             .then(response => response.json())
             .then(data => {
                 // Filter products by productId
-                const filteredProducts = data.filter(product => product.productid == id);
+                const filteredProducts = data.filter(product => product.productid == productid);
                 setProducts(filteredProducts);
                 setNumber(filteredProducts.length)
                 console.log(data);
 
             })
             .catch(error => console.error('Error fetching data:', error));
-    }, [id]); 
+    }, [productid]); 
 
     return (
         <>
@@ -67,5 +68,8 @@ function Company( { companyid }) {
     );
 }
 
+Company.propTypes = {
+    companyid: PropTypes.number.isRequired
+};
 
 export default Product;
