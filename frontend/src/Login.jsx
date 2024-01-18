@@ -7,29 +7,46 @@ function Login() {
     const [toggle, setToggle] = useState(true);
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '',
+        confirm: ''
     });
+    const [isMatch, setIsMatch] = useState(true);
 
     const toggleForm = () => {
         setToggle(!toggle);
     };
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        const { name, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+
+        if (name === "password" || name === "confirm") {
+            const passwordToCompare = name === "password" ? value : formData.password;
+            const confirmPasswordToCompare = name === "confirm" ? value : formData.confirm;
+            setIsMatch(passwordToCompare === confirmPasswordToCompare);
+        }
     };
 
-    const handleSubmit = async (e) => {
+    const handleLoginSubmit = async () => {
+        console.log("Login submit logic here");
+        // Login submit logic
+    };
 
+    const handleRegisterSubmit = async (e) => {
         e.preventDefault();
-        
+
+        if (!isMatch) {
+            toast.error("Passwords don't match");
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:8080/api/users', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
@@ -38,27 +55,20 @@ function Login() {
             if (response.ok) {
                 toast.success("Account created successfully!");
                 console.log('User created');
-            }
-            
-            // check if email exists
-            else if (response.status === 500) {
+            } else if (response.status === 500) {
                 const data = await response.json();
                 const message = data.message || "";
-                if (message.substring(0,12) === "ER_DUP_ENTRY") {
+                if (message.substring(0, 12) === "ER_DUP_ENTRY") {
                     toast.error("Email is already in use");
                 }
-            }
-                
-             else {
+            } else {
                 console.log('Error creating user');
-                toast.error("Error creating account")
-                
+                toast.error("Error creating account");
             }
         } catch (error) {
             console.error('There was an error!', error);
-            toast.error("Error creatinggg account")
+            toast.error("Error creating account");
         }
-
     };
 
     return (
@@ -74,15 +84,38 @@ function Login() {
                     <span className={!toggle ? "toggle-text" : "untoggle-text"}>Register</span>
                 </div>
 
-                <form onSubmit={handleSubmit} className="login-form">
+                <form onSubmit={toggle ? handleLoginSubmit : handleRegisterSubmit} className="login-form">
                     <div className="input-group">
-                        <label htmlFor="email">Email: </label>
-                        <input type="email" className="email" name="email" onChange={handleChange} value={formData.email} required />
+                        <input type="email" 
+                               className="email"
+                               name="email"
+                               placeholder="Email"
+                               onChange={handleChange} 
+                               value={formData.email}
+                               required />
                     </div>
                     <div className="input-group">
-                        <label htmlFor="password">Password: </label>
-                        <input type="password" className="password" name="password" onChange={handleChange} value={formData.password} required />
+                        <input type="password"
+                               className="password"
+                               name="password"
+                               placeholder="Password"
+                               minLength={toggle ? 0 : 8} 
+                               onChange={handleChange}
+                               value={formData.password} 
+                               required />
                     </div>  
+                    {!toggle && (
+                        <div className="input-group">
+                            <input type="password"
+                                   className="confirm-password"
+                                   name="confirm"
+                                   placeholder="Confirm Password"
+                                   minLength={toggle ? 0 : 8}
+                                   onChange={handleChange} 
+                                   value={formData.confirm}
+                                   required />
+                        </div>
+                    )}
                     <div>
                         <button className="submit-button" type="submit">{toggle ? "Login" : "Register"}</button>
                         <ToastContainer />
