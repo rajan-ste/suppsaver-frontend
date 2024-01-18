@@ -38,15 +38,25 @@ function Login() {
             if (response.ok) {
                 toast.success("Account created successfully!");
                 console.log('User created');
+            }
+            
+            // check if email exists
+            else if (response.status === 500) {
+                const data = await response.json();
+                const message = data.message || "";
+                if (message.substring(0,12) === "ER_DUP_ENTRY") {
+                    toast.error("Email is already in use");
+                }
+            }
                 
-            } else {
+             else {
                 console.log('Error creating user');
                 toast.error("Error creating account")
                 
             }
         } catch (error) {
             console.error('There was an error!', error);
-            toast.error("Error creating account")
+            toast.error("Error creatinggg account")
         }
 
     };
