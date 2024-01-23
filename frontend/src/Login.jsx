@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import AuthService from './services/AuthService';
+import axios from './api/api';
 import "react-toastify/dist/ReactToastify.css";
 import './Login.css';
 
 function Login() {
+
+    const navigateTo = useNavigate();
+    useEffect(() => {if (AuthService.isAuthenticated()) {navigateTo("/watchlist")}})
     const [toggle, setToggle] = useState(true);
     const [formData, setFormData] = useState({
         email: '',
@@ -30,9 +37,17 @@ function Login() {
         }
     };
 
-    const handleLoginSubmit = async () => {
-        console.log("Login submit logic here");
-        // Login submit logic
+    const handleLoginSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8080/api/users/login', { email: formData.email, password: formData.password });
+            AuthService.login(response.data.token); 
+            navigateTo("/watchlist")
+            console.log(AuthService.isAuthenticated() ? "yay(login page)" : "nay")
+        } catch (error) {
+            console.error('Login failed:', error);
+            toast.error("Login failed");
+        }
     };
 
     const handleRegisterSubmit = async (e) => {
@@ -55,6 +70,7 @@ function Login() {
             if (response.ok) {
                 toast.success("Account created successfully!");
                 console.log('User created');
+                // check if email already exists
             } else if (response.status === 500) {
                 const data = await response.json();
                 const message = data.message || "";
