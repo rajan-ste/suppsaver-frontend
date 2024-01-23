@@ -3,6 +3,7 @@ import HomePage from './HomePage';
 import Products from './Products';
 import Product from './Product';
 import Login from './Login';
+import Watchlist from './Watchlist';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import './App.css';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:productid" element={<Product />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </div>
       <Footer />
