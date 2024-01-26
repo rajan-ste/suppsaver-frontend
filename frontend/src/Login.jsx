@@ -43,7 +43,6 @@ function Login() {
             const response = await axios.post('http://localhost:8080/api/users/login', { email: formData.email, password: formData.password });
             AuthService.login(response.data.token); 
             navigateTo("/watchlist")
-            console.log(AuthService.isAuthenticated() ? "yay(login page)" : "nay")
         } catch (error) {
             console.error('Login failed:', error);
             toast.error("Login failed");
