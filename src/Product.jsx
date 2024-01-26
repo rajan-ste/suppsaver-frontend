@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import WatchlistButton from './components/watchlistbutton/WatchlistButton';
 import './Product.css';
 
 function Product() {
@@ -37,8 +38,10 @@ function Product() {
                                 <figcaption className='prod-price'>{product.price === 0 ? "Product Unavailable" : `$${product.price.toFixed(2)}`}</figcaption>
                             </figure>    
                         </Link>
+                        
                         })}
-                    </div>        
+                    </div> 
+                <WatchlistButton />       
         </>
     ); 
 }
