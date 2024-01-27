@@ -1,4 +1,5 @@
-.watchlist-button {
+.watchlist-button-add,
+.watchlist-button-delete {
     display: inline-block;
     outline: 0;
     border: none;
@@ -12,11 +13,19 @@
     color: white;
     text-align: center;
     line-height: normal;
-    background-color: blue;
     border-radius: 22px;
     transition: transform 0.3s ease;
 }
 
-.watchlist-button:hover {
+.watchlist-button-add:hover,
+.watchlist-button-delete:hover {
   transform: scale(1.1); /* Scale up on hover */
+}
+
+.watchlist-button-add {
+  background-color: blue;
+}
+
+.watchlist-button-delete {
+  background-color: red;
 }
