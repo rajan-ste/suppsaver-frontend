@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import WatchlistButton from './components/watchlistbutton/WatchlistButton';
+import AuthService from './services/AuthService';
 import './Product.css';
 
 function Product() {
@@ -41,7 +42,7 @@ function Product() {
                         
                         })}
                     </div> 
-                <WatchlistButton />       
+                {AuthService.isAuthenticated() && <WatchlistButton />} 
         </>
     ); 
 }
