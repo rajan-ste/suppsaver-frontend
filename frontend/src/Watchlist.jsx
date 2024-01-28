@@ -1,41 +1,88 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AuthService from "./services/AuthService";
-import axios from './api/api'
+import axios from './api/api';
+import './Watchlist.css';
+import Bin from './assets/bin.svg'
 
-const Watchlist = () => {
+function Watchlist() {
+    const [watchlist, setWatchlist] = useState([]);
 
-    const [products, setProducts] = useState([])
-    
-    // redirect if user is not logged in
+    const handleWatchDelete = async (productid) => {
+        try {
+            const response = await axios.delete('http://localhost:8080/api/watchlist', {
+                data: { userid: null, productid: productid } 
+            });
+            console.log(response);
+            setWatchlist(watchlist.filter(item => item.productid !== productid));
+        } catch (error) {
+            console.error('Watchlist delete failed:', error);
+        }
+    };
+
     const navigateTo = useNavigate();
-    useEffect(() => {if (!AuthService.isAuthenticated()) {navigateTo("/login")}})
-    
+    useEffect(() => {
+        if (!AuthService.isAuthenticated()) {
+            navigateTo("/login");
+        }
+    }, [navigateTo]);
+
     const handleLogout = () => {
         AuthService.logout();
         navigateTo("/");
-        console.log(AuthService.isAuthenticated())
-    }
+    };
 
     useEffect(() => {
-        // Fetch data from API
         axios.get('http://localhost:8080/api/watchlist')
             .then(response => {
-                setProducts(response.data); // response.data contains the JSON response
+                setWatchlist(response.data); 
                 console.log(response.data);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
-    
+
     return (
         <>
             <h1 className="watchlist-heading">Watchlist</h1>
             <button className="logout-button" onClick={handleLogout}>Logout</button>
-            {products.map((product, i) => {
-                return <p key={i}>{product.productid}</p>
-            })}
+            <div className="watchlist-wrapper">
+                {watchlist.map((item, i) => (
+                    <Product
+                        productid={item.productid}
+                        key={i}
+                        handleDelete={() => handleWatchDelete(item.productid)}
+                    />
+                ))}
+            </div>
         </>
-    )
-};
+    );
+}
 
-export default Watchlist
+function Product({ productid, handleDelete }) {
+    const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/products')
+            .then(response => response.json())
+            .then(data => {
+                const foundProduct = data.find(product => product.id === productid);
+                setProduct(foundProduct);
+            })
+            .catch(error => console.error('Error fetching product data:', error));
+    }, [productid]);
+
+    if (!product) return null;
+
+    return (
+        <div className="watchlist-prod">
+            <p className="watch-product-name">{product.name}</p>
+            <p className="watch-product-price">${product.price.toFixed(2)}</p>
+            <img className="watch-product-image" src={product.image} alt={product.name} />
+            <Link to={"/products/" +productid}><button className="watch-product-link">&#8594;</button></Link>
+            <button className="watch-delete-button" onClick={handleDelete}>Delete</button>
+        </div>
+    );
+}
+
+export default Watchlist;

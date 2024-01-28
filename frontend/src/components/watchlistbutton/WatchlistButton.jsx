@@ -1,13 +1,12 @@
-import './WatchlistButton.css'
 import axios from '../../api/api';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import './WatchlistButton.css';
 
-
-function WatchlistButton () {
-
+function WatchlistButton() {
     let { productid } = useParams();
-    
+    const [add, setAdd] = useState(true);
+
     /**
      * Fetches the user's watchlist from the database and updates the state to reflect
      * whether a specific product is in the watchlist. This function makes an asynchronous 
@@ -25,15 +24,16 @@ function WatchlistButton () {
             const response = await axios.get('http://localhost:8080/api/watchlist');
             const watchlistData = response.data;
             const isProductInWatchlist = watchlistData.some(product => product.productid == productid);
-            setAdd(!isProductInWatchlist); 
+            setAdd(!isProductInWatchlist);
         } catch (error) {
             console.error('Error fetching watchlist data: ', error);
         }
     };
-    
-    
-    // true if product is not in watchlist, else false
-    const [add, setAdd] = useState(setWatchlistState);
+
+    // Use useEffect to update the state when the component mounts or productid changes
+    useEffect(() => {
+        setWatchlistState();
+    }, [productid]);
 
     /**
      * Inserts a selected product into the user's watchlist.
@@ -46,13 +46,12 @@ function WatchlistButton () {
      */
     const handleWatchlistAdd = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/api/watchlist', { userid: null, productid: productid});
+            await axios.post('http://localhost:8080/api/watchlist', { userid: null, productid: productid });
             setWatchlistState();
-            console.log(response)
         } catch (error) {
             console.error('Watchlist add failed:', error);
         }
-    }
+    };
 
     /**
      * Deletes a selected product from the user's watchlist in the database.
@@ -65,22 +64,21 @@ function WatchlistButton () {
      */
     const handleWatchlistDelete = async () => {
         try {
-            const response = await axios.delete('http://localhost:8080/api/watchlist', {
-                data: { userid: null, productid: productid } 
+            await axios.delete('http://localhost:8080/api/watchlist', {
+                data: { userid: null, productid: productid }
             });
-            await setWatchlistState();
-            console.log(response)
+            setAdd(true)
         } catch (error) {
             console.error('Watchlist delete failed:', error);
         }
-    }
-    
+    };
+
     return (
-        <>
-            <button onClick={add ? handleWatchlistAdd : handleWatchlistDelete} className={add ? "watchlist-button-add" : "watchlist-button-delete"}>
-                {add ? "Add to watchlist" : "Remove from watchlist"}</button>
-        </>
-    )
+        <button onClick={add ? handleWatchlistAdd : handleWatchlistDelete} 
+                className={add ? "watchlist-button-add" : "watchlist-button-delete"}>
+            {add ? "Add to watchlist" : "Remove from watchlist"}
+        </button>
+    );
 }
 
-export default WatchlistButton
+export default WatchlistButton;

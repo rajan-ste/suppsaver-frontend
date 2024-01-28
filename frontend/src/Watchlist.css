@@ -1,0 +1,48 @@
+.watchlist-wrapper {
+    display: grid;
+    grid-template-columns: 700px 700px 700px; 
+    grid-gap: 50px;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.watchlist-prod {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto; /* Two columns: one for the name, one for the price */
+    align-items: center; 
+    background-color: white;
+    padding-left: 8%;
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 500;
+    border-radius: 30px;
+    gap: 10px; 
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.watch-product-image {
+    width: 20%;
+}
+.watch-delete-button,
+.watch-product-link {
+    background-color: red;
+    display: inline-block;
+    outline: 0;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 9px 22px;
+    font-size: 14px;
+    height: 35px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    line-height: normal;
+    border-radius: 22px;
+    transition: transform 0.3s ease;
+}
+
+.watch-product-link {
+    background-color: blue;
+}
