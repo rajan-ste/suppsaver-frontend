@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import AuthService from "./services/AuthService";
 import axios from './api/api';
 import './Watchlist.css';
-import Bin from './assets/bin.svg'
 
 function Watchlist() {
     const [watchlist, setWatchlist] = useState([]);
@@ -46,18 +45,25 @@ function Watchlist() {
         <>
             <h1 className="watchlist-heading">Watchlist</h1>
             <button className="logout-button" onClick={handleLogout}>Logout</button>
-            <div className="watchlist-wrapper">
-                {watchlist.map((item, i) => (
-                    <Product
-                        productid={item.productid}
-                        key={i}
-                        handleDelete={() => handleWatchDelete(item.productid)}
-                    />
-                ))}
-            </div>
+            {watchlist.length > 0 ? (
+                <div className="watchlist-wrapper">
+                    {watchlist.map((item, i) => (
+                        <Product
+                            productid={item.productid}
+                            key={i}
+                            handleDelete={() => handleWatchDelete(item.productid)}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="empty-wrapper">
+                    <h2 className="empty-watchlist">Your watchlist is empty, add some products {<Link to="/products">here</Link>}</h2>
+                </div>
+            )}
         </>
     );
 }
+
 
 function Product({ productid, handleDelete }) {
     const [product, setProduct] = useState(null);

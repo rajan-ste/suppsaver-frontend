@@ -1,3 +1,7 @@
+.watchlist-heading {
+    margin-top: 5%;
+}
+
 .watchlist-wrapper {
     display: grid;
     grid-template-columns: 700px 700px 700px; 
@@ -25,7 +29,8 @@
     width: 20%;
 }
 .watch-delete-button,
-.watch-product-link {
+.watch-product-link,
+.logout-button {
     background-color: red;
     display: inline-block;
     outline: 0;
@@ -45,4 +50,28 @@
 
 .watch-product-link {
     background-color: blue;
+}
+
+.logout-button {
+    background-color: blue;
+    margin-top: 5%;
+}
+
+.empty-wrapper {
+    margin-top: 40%;
+    display: grid;
+    grid-template-columns: 700px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 20%;
+    text-decoration: none;
+}
+
+.empty-watchlist a, 
+.empty-watchlist a:visited, 
+.empty-watchlist a:hover { 
+    color: blue; 
+    text-decoration: none; 
+    font-weight: bold; 
 }
