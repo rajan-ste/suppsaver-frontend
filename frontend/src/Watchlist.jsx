@@ -83,12 +83,15 @@ function Product({ productid, handleDelete }) {
     return (
         <div className="watchlist-prod">
             <p className="watch-product-name">{product.name}</p>
-            <p className="watch-product-price">${product.price.toFixed(2)}</p>
+            <p className="watch-product-price">
+                {product.price === 0 ? "Not available" : `$${product.price.toFixed(2)}`}
+            </p>
             <img className="watch-product-image" src={product.image} alt={product.name} />
-            <Link to={"/products/" +productid}><button className="watch-product-link">&#8594;</button></Link>
+            <Link to={"/products/" + productid}><button className="watch-product-link">&#8594;</button></Link>
             <button className="watch-delete-button" onClick={handleDelete}>Delete</button>
         </div>
     );
 }
+
 
 export default Watchlist;
