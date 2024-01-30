@@ -51,7 +51,7 @@ function Products() {
       </div>
       <div className='wrapper'>
         {products.map((item, i) => (
-          <Link to={"/products/" + item.id} className={item.price === 0 ? 'product-zero' : 'product'} key={i}>
+          <Link to={"/products/" + item.id } className={item.price === 0 ? 'product-zero' : 'product'} key={i} target="_blank">
             <figure>
               <img className='product-image' src={item.image} alt={item.name} />
               <figcaption>{item.name}</figcaption>

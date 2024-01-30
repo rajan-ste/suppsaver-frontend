@@ -43,7 +43,7 @@ def scrape_products(url):
                 lowest_price = 'No Price Found'
 
             product_data.append({
-                'companyid': 3,  # Example company ID
+                'companyid': 3,  
                 'productname': full_name,
                 'price': lowest_price,
                 'image': image_url,
@@ -51,7 +51,7 @@ def scrape_products(url):
             })
 
  
-        response = requests.post("http://localhost:8080/api/products", headers=headers, json=product_data)
+        response = requests.put("http://localhost:8080/api/products/update-price", headers=headers, json=product_data)
         print(f"Status Code: {response.status_code}")
         print(f"Response Body: {response.text}")
 
