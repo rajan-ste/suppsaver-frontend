@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from "react-router-dom";
-import SearchBar from './components/searchbar/Searchbar';
+import SearchBar from './components/searchbar/SearchBar';
 import './Products.css';
 
 function Products() {
