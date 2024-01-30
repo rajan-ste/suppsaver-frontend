@@ -5,7 +5,7 @@ import './Products.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const API = 'http://localhost:8080/api/products';
+  const API = 'https://api.suppsaver.net/api/products';
 
   const fetchProducts = useCallback((searchTerm = '', isSearch = false) => {
     fetch(isSearch ? `${API}/search?term=${searchTerm}` : API)
