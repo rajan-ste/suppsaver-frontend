@@ -1,4 +1,4 @@
-import './Homepage.css';
+import './HomePage.css';
 import trainer from './assets/trainer.svg';
 import { Link } from "react-router-dom";
 
