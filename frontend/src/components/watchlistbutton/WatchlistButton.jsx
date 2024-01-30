@@ -21,7 +21,7 @@ function WatchlistButton() {
      */
     const setWatchlistState = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/watchlist');
+            const response = await axios.get('https://api.suppsaver.net/api/watchlist');
             const watchlistData = response.data;
             const isProductInWatchlist = watchlistData.some(product => product.productid == productid);
             setAdd(!isProductInWatchlist);
@@ -46,7 +46,7 @@ function WatchlistButton() {
      */
     const handleWatchlistAdd = async () => {
         try {
-            await axios.post('http://localhost:8080/api/watchlist', { userid: null, productid: productid });
+            await axios.post('https://api.suppsaver.net/api/watchlist', { userid: null, productid: productid });
             setWatchlistState();
         } catch (error) {
             console.error('Watchlist add failed:', error);
@@ -64,7 +64,7 @@ function WatchlistButton() {
      */
     const handleWatchlistDelete = async () => {
         try {
-            await axios.delete('http://localhost:8080/api/watchlist', {
+            await axios.delete('https://api.suppsaver.net/api/watchlist', {
                 data: { userid: null, productid: productid }
             });
             setAdd(true)

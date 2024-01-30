@@ -10,7 +10,7 @@ function Watchlist() {
 
     const handleWatchDelete = async (productid) => {
         try {
-            const response = await axios.delete('http://localhost:8080/api/watchlist', {
+            const response = await axios.delete('https://api.suppsaver.net/api/watchlist', {
                 data: { userid: null, productid: productid } 
             });
             console.log(response);
@@ -33,7 +33,7 @@ function Watchlist() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/watchlist')
+        axios.get('https://api.suppsaver.net/api/watchlist')
             .then(response => {
                 setWatchlist(response.data); 
                 console.log(response.data);
@@ -69,7 +69,7 @@ function Product({ productid, handleDelete }) {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/products')
+        fetch('https://api.suppsaver.net/api/products')
             .then(response => response.json())
             .then(data => {
                 const foundProduct = data.find(product => product.id === productid);

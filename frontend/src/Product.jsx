@@ -13,7 +13,7 @@ function Product() {
 
     useEffect(() => {
         // Fetch data from API
-        fetch('http://localhost:8080/api/products/product-company')
+        fetch('https://api.suppsaver.net/api/products/product-company')
             .then(response => response.json())
             .then(data => {
                 // Filter products by productId
@@ -52,7 +52,7 @@ function Company( { companyid }) {
     const [companies, setCompanies] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/companies')
+        fetch('https://api.suppsaver.net/api/companies')
             .then(response => response.json())
             .then(data => {
                 const filteredCompanies = data.filter(company => company.id === companyid);

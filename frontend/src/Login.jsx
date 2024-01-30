@@ -40,7 +40,7 @@ function Login() {
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/users/login', { email: formData.email, password: formData.password });
+            const response = await axios.post('https://api.suppsaver.net/api/users/login', { email: formData.email, password: formData.password });
             AuthService.login(response.data.token); 
             navigateTo("/watchlist")
         } catch (error) {
@@ -58,7 +58,7 @@ function Login() {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/users', {
+            const response = await fetch('https://api.suppsaver.net/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
