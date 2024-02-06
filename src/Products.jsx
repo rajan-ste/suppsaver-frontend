@@ -5,7 +5,7 @@ import './Products.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
-  const API = 'https://api.suppsaver.net/api/products';
+  const API = `${import.meta.env.VITE_API_URL}/products`;
 
   const fetchProducts = useCallback((searchTerm = '', isSearch = false) => {
     fetch(isSearch ? `${API}/search?term=${searchTerm}` : API)

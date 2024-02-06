@@ -13,7 +13,6 @@ function WatchlistButton() {
      * HTTP GET request to retrieve the watchlist data. It then checks if the specified 
      * product is in the fetched watchlist and updates the state accordingly.
      * 
-     * Note: This function relies on 'productid' being available in the outer scope.
      * 
      * @async
      * @function setWatchlistState
@@ -21,7 +20,7 @@ function WatchlistButton() {
      */
     const setWatchlistState = async () => {
         try {
-            const response = await axios.get('https://api.suppsaver.net/api/watchlist');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/watchlist`);
             const watchlistData = response.data;
             const isProductInWatchlist = watchlistData.some(product => product.productid == productid);
             setAdd(!isProductInWatchlist);
@@ -46,7 +45,7 @@ function WatchlistButton() {
      */
     const handleWatchlistAdd = async () => {
         try {
-            await axios.post('https://api.suppsaver.net/api/watchlist', { userid: null, productid: productid });
+            await axios.post(`${import.meta.env.VITE_API_URL}/watchlist`, { userid: null, productid: productid });
             setWatchlistState();
         } catch (error) {
             console.error('Watchlist add failed:', error);
@@ -64,7 +63,7 @@ function WatchlistButton() {
      */
     const handleWatchlistDelete = async () => {
         try {
-            await axios.delete('https://api.suppsaver.net/api/watchlist', {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/watchlist`, {
                 data: { userid: null, productid: productid }
             });
             setAdd(true)
