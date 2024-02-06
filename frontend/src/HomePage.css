@@ -36,8 +36,9 @@
 }
 
 .middle-box img {
-    width: 80%;
+    width: 70%;
     margin: auto;
+    margin-bottom: -20vh;
 }
 
 .explore {

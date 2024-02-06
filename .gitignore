@@ -74,6 +74,7 @@ web_modules/
 
 # dotenv environment variable files
 api/.env
+frontend/.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -132,3 +133,5 @@ dist
 # python venv
 api/scraper/venv/
 api/scraper/__pycache__
+
+api/src/app/config

@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "./services/AuthService";
 import axios from './api/api';
 import './Watchlist.css';
 
 function Watchlist() {
     const [watchlist, setWatchlist] = useState([]);
+    const navigateTo = useNavigate();
 
     const handleWatchDelete = async (productid) => {
         try {
-            const response = await axios.delete('https://api.suppsaver.net/api/watchlist', {
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/watchlist`, {
                 data: { userid: null, productid: productid } 
             });
             console.log(response);
@@ -20,26 +20,25 @@ function Watchlist() {
         }
     };
 
-    const navigateTo = useNavigate();
     useEffect(() => {
         if (!AuthService.isAuthenticated()) {
             navigateTo("/login");
         }
     }, [navigateTo]);
 
-    const handleLogout = () => {
-        AuthService.logout();
-        navigateTo("/");
-    };
-
     useEffect(() => {
-        axios.get('https://api.suppsaver.net/api/watchlist')
+        axios.get(`${import.meta.env.VITE_API_URL}/watchlist`)
             .then(response => {
                 setWatchlist(response.data); 
                 console.log(response.data);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
+
+    const handleLogout = () => {
+        AuthService.logout();
+        navigateTo("/");
+    };
 
     return (
         <>
@@ -64,12 +63,11 @@ function Watchlist() {
     );
 }
 
-
 function Product({ productid, handleDelete }) {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        fetch('https://api.suppsaver.net/api/products')
+        fetch(`${import.meta.env.VITE_API_URL}/products`)
             .then(response => response.json())
             .then(data => {
                 const foundProduct = data.find(product => product.id === productid);
@@ -92,6 +90,5 @@ function Product({ productid, handleDelete }) {
         </div>
     );
 }
-
 
 export default Watchlist;

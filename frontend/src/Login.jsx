@@ -40,7 +40,7 @@ function Login() {
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://api.suppsaver.net/api/users/login', { email: formData.email, password: formData.password });
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/login`, { email: formData.email, password: formData.password });
             AuthService.login(response.data.token); 
             navigateTo("/watchlist")
         } catch (error) {
@@ -58,7 +58,7 @@ function Login() {
         }
 
         try {
-            const response = await fetch('https://api.suppsaver.net/api/users', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

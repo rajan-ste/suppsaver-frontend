@@ -35,10 +35,29 @@
 
 .wrapper {
     display: grid;
-    grid-template-columns: 450px 450px 450px; 
+    grid-template-columns: 50vh 50vh 50vh; 
     grid-gap: 50px;
     justify-content: center;
   }
+
+@media (max-width:1430px) {
+  .wrapper {
+    grid-template-columns: 30vh 30vh 30vh; 
+  }
+}
+
+@media (max-width:970px) {
+  .wrapper {
+    grid-template-columns: 30vh 30vh; 
+  }
+}
+
+@media (max-width:800px) {
+  .wrapper {
+    grid-template-columns:30vh; 
+  }
+}
+
 
 .product-image {
   width: 50%;

@@ -4,15 +4,33 @@
 
 .watchlist-wrapper {
     display: grid;
-    grid-template-columns: 700px 700px 700px; 
+    grid-template-columns: 700px 700px 700px;
     grid-gap: 50px;
     justify-content: center;
     margin-top: 10%;
 }
 
+@media (max-width:2350px) {
+    .watchlist-wrapper {
+      grid-template-columns: 80vh 80vh; 
+    }
+  }
+  
+  @media (max-width:1400px) {
+    .watchlist-wrapper {
+      grid-template-columns: 55vh 55vh; 
+    }
+  }
+  
+  @media (max-width:1000px) {
+    .watchlist-wrapper {
+      grid-template-columns: 50vh; 
+    }
+  }
+
 .watchlist-prod {
     display: grid;
-    grid-template-columns: auto auto auto auto auto; /* Two columns: one for the name, one for the price */
+    grid-template-columns: auto auto auto auto auto; 
     align-items: center; 
     background-color: white;
     padding-left: 8%;

@@ -13,7 +13,7 @@ function Product() {
 
     useEffect(() => {
         // Fetch data from API
-        fetch('https://api.suppsaver.net/api/products/product-company')
+        fetch(`${import.meta.env.VITE_API_URL}/products/product-company`)
             .then(response => response.json())
             .then(data => {
                 // Filter products by productId
@@ -52,7 +52,7 @@ function Company( { companyid }) {
     const [companies, setCompanies] = useState([]);
 
     useEffect(() => {
-        fetch('https://api.suppsaver.net/api/companies')
+        fetch(`${import.meta.env.VITE_API_URL}/companies`)
             .then(response => response.json())
             .then(data => {
                 const filteredCompanies = data.filter(company => company.id === companyid);
@@ -65,7 +65,8 @@ function Company( { companyid }) {
         <>
             {companies.map((company, i) => (
                 <div key={i}>
-                    <img src={company.logo} alt={company.name} className={companyid === 3 ? 'sprintfit-logo' : 'logo-other'}/>
+                    <img src={company.logo} alt={company.name} className={companyid === 3 ? 'sprintfit-logo' : 
+                                                                          companyid === 2 ? 'suppsnz-logo' : 'logo-other'}/>
                 </div>
             ))}
         </>
