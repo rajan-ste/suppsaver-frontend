@@ -10,19 +10,19 @@
     margin-top: 10%;
 }
 
-@media (max-width:2350px) {
+@media (max-width:2400px) {
     .watchlist-wrapper {
       grid-template-columns: 80vh 80vh; 
     }
   }
   
-  @media (max-width:1400px) {
+  @media (max-width:1500px) {
     .watchlist-wrapper {
       grid-template-columns: 55vh 55vh; 
     }
   }
   
-  @media (max-width:1000px) {
+  @media (max-width:1200px) {
     .watchlist-wrapper {
       grid-template-columns: 50vh; 
     }

@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  
+  color: #213547; 
+  background-color: black; 
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,15 +19,6 @@ body {
   position: relative;
   min-width: 120vh;
   min-height: 100vh;
-  background: rgb(195,195,195);
-  background: linear-gradient(90deg, rgba(195,195,195,1) 0%, rgba(217,217,222,0.11808473389355745) 50%, rgba(195,195,195,1) 100%);
+  /* Adjust the gradient for light theme */
+  background: linear-gradient(90deg, rgba(200,200,200,1) 0%, rgba(230,230,230,1) 50%, rgba(200,200,200,1) 100%);
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-}
-
-
